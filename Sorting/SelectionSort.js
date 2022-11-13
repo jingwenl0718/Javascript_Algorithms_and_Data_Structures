@@ -1,8 +1,17 @@
-function selectSort(arr) {
+function selectionSort(arr) {
     for (let i=0; i<arr.length; i++) {
-        let min = arr[i] 
-        for (let j=i; j<arr.length; j++) {
-            if (arr[j])
+        let min = i 
+        for (let j=i+1; j<arr.length; j++) {
+            if (arr[j] < arr[min]) {
+                min = j
+            }
+        }
+        // no need to swap if i is the min
+        if (i !== min) {
+            [arr[i], arr[min]] = [arr[min], arr[i]]
         }
     }
+    return arr
 }
+
+console.log(selectionSort([1,5,3,2,6,4]))
