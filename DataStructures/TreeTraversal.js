@@ -1,5 +1,5 @@
 // Breadth First Search
-// Depth First Search (InOrder, PostOrder, PreOrder)
+// Depth First Search (InOrder (from smallest to biggest), PostOrder, PreOrder)
 // same time complexity between BFS and DFS: O(N)
 // space complexity: for wide trees, DFS has less space complexity, versus BFS (needs to store everything on a level in a queue)
 // for deep trees (e.g. deep one-sided tree) BFS saves a lot of space complexity 
