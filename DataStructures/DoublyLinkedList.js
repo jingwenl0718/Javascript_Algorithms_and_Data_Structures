@@ -102,8 +102,8 @@ class DoublyLinkedList {
 
     insert(index, val) {
         if (index < 0 || index > this.length) return false
-        if (index = 0) return !!this.unshift(val)
-        if (index = this.length) return !!this.push(val)
+        if (index === 0) return !!this.unshift(val)
+        if (index === this.length) return !!this.push(val)
         else {
             let newNode = new Node(val)
             let foundNode = this.get(index-1)
@@ -116,4 +116,46 @@ class DoublyLinkedList {
             return true 
         }
     }
+
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined
+        if (index === 0) return this.shift(0)
+        if (index === this.length -1) return this.pop()
+        let removedNode = this.get(index)
+        let previousNode = removedNode.prev
+        let afterNode = removedNode.next
+        previousNode.next = afterNode
+        afterNode.prev = previousNode
+        removedNode.prev = null
+        removedNode.next = null
+        this.length--
+        return removedNode
+    }
+
+    reverse(){
+        if (this.length < 2) return this;
+        let newHead = this.tail;
+        this.tail = this.head;
+        this.head = newHead;
+        let runner = this.head;
+        let nextRunner = this.head.prev;
+        while (nextRunner) {
+            runner.next = nextRunner;
+            let prevRunner = nextRunner.prev
+            nextRunner.prev = runner;
+            runner = nextRunner;
+            nextRunner = prevRunner;
+        }
+        this.head.prev = null;
+        this.tail.next = null;
+        return this; 
+    }
 }
+
+let doublyLinkedList = new DoublyLinkedList;
+doublyLinkedList.push(5).push(10).push(15).push(20)
+doublyLinkedList.reverse(); // singlyLinkedList;
+console.log(doublyLinkedList.head.val); // 20
+console.log(doublyLinkedList.head.next.val); // 15
+console.log(doublyLinkedList.head.next.next.val); // 10
+console.log(doublyLinkedList.head.next.next.next.val); // 5
